@@ -7,7 +7,7 @@ import HomePage from './pages/HomePage';
 import NewEventPage from './pages/NewEventPage';
 import EventRootLayout from './pages/EventRootLayout';
 import ErrorPage from './pages/ErrorPage';
-import { loader as singleEventLoader} from './pages/EventDetailPage';
+import { loader as singleEventLoader,action as deleteEventAction} from './pages/EventDetailPage';
 import {loader as allEventsLoader} from './pages/EventsPage';
 import{action as dataSubmitter} from './pages/NewEventPage';
 
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
         children:[
           {index:true,element:<EventsPage/>, loader:allEventsLoader},
           {path:"/events/new",element:<NewEventPage/>,action:dataSubmitter },
-          {path:"/events/:eventID",element:<EventDetailPage/> , loader:singleEventLoader},
+          {path:"/events/:eventID",element:<EventDetailPage/> , loader:singleEventLoader, action:deleteEventAction},
           {path:"/events/:eventID/edit",element:<EditEventPage/>, loader: singleEventLoader}
       ]},
     ]
@@ -33,9 +33,6 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-
-  
-
   return  <RouterProvider router={router}/>
 }
 
